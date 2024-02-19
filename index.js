@@ -45,6 +45,12 @@ function startApp() {
       else if (answers.choice === 'Add a department') {
         addDepartment();
       } 
+      else if (answers.choice === 'Add a role') {
+        addRole();
+      } 
+      else if (answers.choice === 'Add an employee') {
+        addEmployee();
+      } 
       else {
         // Implement other choices if needed
         console.log('Choice not implemented yet');
@@ -118,3 +124,39 @@ function addDepartment() {
       console.log('Error occurred:', error);
     });
   }
+
+  // Function to add a role
+  function addRole() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'roleTitle',
+            message: 'Enter the title of the role:'
+        },
+        {
+            type: 'number',
+            name: 'salary',
+            message: 'Enter the salary for this role:'
+        },
+        {
+            type: 'number',
+            name: 'departmentId',
+            message: 'Enter the department ID for this role:'
+        }
+    ]).then(answers => {
+        // Query to insert the new role
+        const query = 'INSERT INTO role (role_title, salary, department_id) VALUES (?, ?, ?)';
+        // Execute the query
+        connection.query(query, [answers.roleTitle, answers.salary, answers.departmentId], (err, result) => {
+            if (err) {
+                console.error('Error adding role: ' + err.stack);
+                return;
+            }
+            console.log('Role added successfully!');
+            // Prompt the user again after adding role
+            startApp();
+        });
+    }).catch(error => {
+        console.log('Error occurred:', error);
+    });
+}
