@@ -16,7 +16,7 @@ N/A
 
 GitHub repo: https://github.com/dtran44/Employee-Tracker-SQL
 
-Video Link: 
+Video Link: https://drive.google.com/file/d/1sNRrkWr2_UzQrRa9yhVaz7cZv5Tl9sgn/view
 
 
 ## License
